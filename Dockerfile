@@ -21,7 +21,7 @@ RUN { \
 
 RUN cd /home/steam/csgo-dedicated/csgo && \ 
     curl https://cm2.network/csgo/cfg.tar.gz -o cfg.tar.gz && \
-    tar -xzf cfg.tar.gz && rm cfg.tar.gz
+    tar -xf cfg.tar.gz && rm cfg.tar.gz
 
 ENV SRCDS_FPSMAX=300 SRCDS_TICKRATE=128 SRCDS_PORT=27015 SRCDS_TV_PORT=27020 SRCDS_MAXPLAYERS=14 SRCDS_TOKEN=0 SRCDS_RCONPW="changeme" SRCDS_PW="changeme"
 
