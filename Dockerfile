@@ -9,7 +9,7 @@ RUN ./home/steam/steamcmd/steamcmd.sh +login anonymous \
         +force_install_dir /home/steam/csgo-dedicated \
         +app_update 740 validate \
         +quit
-        
+
 RUN { \
 		echo '@ShutdownOnFailedCommand 1'; \
 		echo '@NoPromptForPassword 1'; \
