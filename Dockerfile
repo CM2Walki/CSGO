@@ -25,7 +25,7 @@ RUN cd /home/steam/csgo-dedicated/csgo && \
 
 ENV SRCDS_FPSMAX=300 SRCDS_TICKRATE=128 SRCDS_PORT=27015 SRCDS_TV_PORT=27020 SRCDS_MAXPLAYERS=14 SRCDS_TOKEN=0 SRCDS_RCONPW="changeme" SRCDS_PW="changeme"
 
-VOLUME /home/steam/csgo-dedicated
+#VOLUME /home/steam/csgo-dedicated
 
 # Set Entrypoint; Technically 2 steps: 1. Update server, 2. Start server
 ENTRYPOINT ./home/steam/steamcmd/steamcmd.sh +login anonymous +force_install_dir /home/steam/csgo-dedicated +app_update 740 +quit && \
