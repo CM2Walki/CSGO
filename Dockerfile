@@ -9,18 +9,16 @@ LABEL maintainer="walentinlamonos@gmail.com"
 RUN ./home/steam/steamcmd/steamcmd.sh +login anonymous \
         +force_install_dir /home/steam/csgo-dedicated \
         +app_update 740 validate \
-        +quit
-
-RUN { \
+        +quit &&
+{ \
 		echo '@ShutdownOnFailedCommand 1'; \
 		echo '@NoPromptForPassword 1'; \
 		echo 'login anonymous'; \
 		echo 'force_install_dir /home/steam/csgo-dedicated/'; \
 		echo 'app_update 740'; \
 		echo 'quit'; \
-} > /home/steam/csgo-dedicated/csgo_update.txt
-
-RUN cd /home/steam/csgo-dedicated/csgo && \ 
+} > /home/steam/csgo-dedicated/csgo_update.txt &&
+cd /home/steam/csgo-dedicated/csgo && \ 
     curl https://cm2.network/csgo/cfg.tar.gz -o cfg.tar.gz && \
     tar -xf cfg.tar.gz && rm cfg.tar.gz
 
