@@ -19,7 +19,7 @@ RUN ./home/steam/steamcmd/steamcmd.sh +login anonymous \
 		echo 'quit'; \
 } > /home/steam/csgo-dedicated/csgo_update.txt && \
 cd /home/steam/csgo-dedicated/csgo && \ 
-    wget https://raw.githubusercontent.com/CM2Walki/CSGO/master/etc/cfg.tar.gz | tar -xf -
+    wget -qO- https://raw.githubusercontent.com/CM2Walki/CSGO/master/etc/cfg.tar.gz | tar xf -
 
 ENV SRCDS_FPSMAX=300 SRCDS_TICKRATE=128 SRCDS_PORT=27015 SRCDS_TV_PORT=27020 SRCDS_MAXPLAYERS=14 SRCDS_TOKEN=0 SRCDS_RCONPW="changeme" SRCDS_PW="changeme"
 
