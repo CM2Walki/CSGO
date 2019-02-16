@@ -6,7 +6,7 @@ LABEL maintainer="walentinlamonos@gmail.com"
 
 # Run Steamcmd and install CSGO
 RUN set -x \
-	./home/steam/steamcmd/steamcmd.sh \
+	&& ./home/steam/steamcmd/steamcmd.sh \
 		+login anonymous \
 		+force_install_dir /home/steam/csgo-dedicated \
 		+app_update 740 validate \
