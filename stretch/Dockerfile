@@ -35,8 +35,8 @@ ENV SRCDS_FPSMAX=300 \
 	SRCDS_RCONPW="changeme" \
 	SRCDS_PW="changeme" \
 	SRCDS_STARTMAP="de_dust2" \
-	$SRCDS_REGION=3 \
-	$SRCDS_MAPGROUP="mg_active"
+	SRCDS_REGION=3 \
+	SRCDS_MAPGROUP="mg_active"
 
 WORKDIR $STEAMAPPDIR
 
