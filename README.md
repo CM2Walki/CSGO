@@ -38,6 +38,9 @@ SRCDS_TV_PORT=27020
 SRCDS_FPSMAX=300
 SRCDS_TICKRATE=128
 SRCDS_MAXPLAYERS=14
+SRCDS_STARTMAP="de_dust2"
+SRCDS_REGION=3
+SRCDS_MAPGROUP="mg_active"
 ```
 ## Config
 The config files can be found under */home/steam/csgo-dedicated/csgo/cfg*
