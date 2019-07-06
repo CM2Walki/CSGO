@@ -1,7 +1,7 @@
 ###########################################################
 # Dockerfile that builds a CSGO Gameserver
 ###########################################################
-FROM cm2network/steamcmd
+FROM cm2network/steamcmd:root
 
 LABEL maintainer="walentinlamonos@gmail.com"
 
@@ -9,22 +9,36 @@ ENV STEAMAPPID 740
 ENV STEAMAPPDIR /home/steam/csgo-dedicated
 
 # Run Steamcmd and install CSGO
+# Create autoupdate config
+# Download ESL config
+# Remove packages and tidy up
 RUN set -x \
-	&& ${STEAMCMDDIR}/steamcmd.sh \
-		+login anonymous \
-		+force_install_dir ${STEAMAPPDIR} \
-		+app_update ${STEAMAPPID} validate \
-		+quit \
-	&& { \
-		echo '@ShutdownOnFailedCommand 1'; \
-		echo '@NoPromptForPassword 1'; \
-		echo 'login anonymous'; \
-		echo 'force_install_dir ${STEAMAPPDIR}'; \
-		echo 'app_update ${STEAMAPPID}'; \
-		echo 'quit'; \
-	} > ${STEAMAPPDIR}/csgo_update.txt \
-	&& cd ${STEAMAPPDIR}/csgo \ 
-    	&& wget -qO- https://raw.githubusercontent.com/CM2Walki/CSGO/master/etc/cfg.tar.gz | tar xf -
+	&& apt-get update \
+	&& apt-get install -y --no-install-recommends --no-install-suggests \
+		wget=1.18-5+deb9u3 \
+		ca-certificates=20161130+nmu1+deb9u1 \
+	&& su steam -c \
+		"${STEAMCMDDIR}/steamcmd.sh \
+			+login anonymous \
+			+force_install_dir ${STEAMAPPDIR} \
+			+app_update ${STEAMAPPID} validate \
+			+quit \
+		&& { \
+			echo '@ShutdownOnFailedCommand 1'; \
+			echo '@NoPromptForPassword 1'; \
+			echo 'login anonymous'; \
+			echo 'force_install_dir ${STEAMAPPDIR}'; \
+			echo 'app_update ${STEAMAPPID}'; \
+			echo 'quit'; \
+		} > ${STEAMAPPDIR}/csgo_update.txt \
+		&& cd ${STEAMAPPDIR}/csgo \
+		&& wget -qO- https://raw.githubusercontent.com/CM2Walki/CSGO/master/etc/cfg.tar.gz | tar xf -" \
+	&& apt-get remove --purge -y \
+		wget \
+		ca-certificates \
+	&& apt-get clean autoclean \
+	&& apt-get autoremove -y \
+	&& rm -rf /var/lib/apt/lists/*
 
 ENV SRCDS_FPSMAX=300 \
 	SRCDS_TICKRATE=128 \
@@ -39,6 +53,8 @@ ENV SRCDS_FPSMAX=300 \
 	SRCDS_MAPGROUP="mg_active" \
 	SRCDS_GAMETYPE=0 \
 	SRCDS_GAMEMODE=1
+
+USER steam
 
 WORKDIR $STEAMAPPDIR
 
