@@ -35,7 +35,6 @@ RUN set -x \
 		&& wget -qO- https://raw.githubusercontent.com/CM2Walki/CSGO/master/etc/cfg.tar.gz | tar xf -" \
 	&& apt-get remove --purge -y \
 		wget \
-		ca-certificates \
 	&& apt-get clean autoclean \
 	&& apt-get autoremove -y \
 	&& rm -rf /var/lib/apt/lists/*
