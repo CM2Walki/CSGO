@@ -72,4 +72,6 @@ ENTRYPOINT ${STEAMCMDDIR}/steamcmd.sh \
 			+mapgroup $SRCDS_MAPGROUP +map $SRCDS_STARTMAP +sv_setsteamaccount $SRCDS_TOKEN +rcon_password $SRCDS_RCONPW +sv_password $SRCDS_PW +sv_region $SRCDS_REGION
 
 # Expose ports
-EXPOSE 27015 27020 27005 51840
+EXPOSE 27015/tcp \
+	 27015/udp \
+	 27020/udp
