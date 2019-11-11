@@ -15,8 +15,8 @@ ENV STEAMAPPDIR /home/steam/csgo-dedicated
 RUN set -x \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
-		wget=1.18-5+deb9u3 \
-		ca-certificates=20161130+nmu1+deb9u1 \
+		wget=1.20.1-1.1 \
+		ca-certificates=20190110 \
 	&& su steam -c \
 		"${STEAMCMDDIR}/steamcmd.sh \
 			+login anonymous \
