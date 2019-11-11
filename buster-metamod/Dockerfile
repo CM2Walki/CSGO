@@ -32,7 +32,8 @@ RUN set -x \
 			echo 'quit'; \
 		} > ${STEAMAPPDIR}/csgo_update.txt \
 		&& cd ${STEAMAPPDIR}/csgo \
-		&& wget -qO- https://raw.githubusercontent.com/CM2Walki/CSGO/dev/etc/cfg.tar.gz | tar xvzf -" \
+		&& wget -qO- https://raw.githubusercontent.com/CM2Walki/CSGO/dev/etc/cfg.tar.gz | tar xvzf - \
+		&& wget -qO- https://mms.alliedmods.net/mmsdrop/1.10/mmsource-1.10.7-git971-linux.tar.gz | tar xvzf - \
 	&& apt-get remove --purge -y \
 		wget \
 	&& apt-get clean autoclean \
