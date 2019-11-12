@@ -15,8 +15,8 @@ ENV STEAMAPPDIR /home/steam/csgo-dedicated
 RUN set -x \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
-		wget=1.18-5+deb9u3 \
-		ca-certificates=20161130+nmu1+deb9u1 \
+		wget=1.20.1-1.1 \
+		ca-certificates=20190110 \
 	&& su steam -c \
 		"${STEAMCMDDIR}/steamcmd.sh \
 			+login anonymous \
@@ -32,7 +32,9 @@ RUN set -x \
 			echo 'quit'; \
 		} > ${STEAMAPPDIR}/csgo_update.txt \
 		&& cd ${STEAMAPPDIR}/csgo \
-		&& wget -qO- https://raw.githubusercontent.com/CM2Walki/CSGO/master/etc/cfg.tar.gz | tar xf -" \
+		&& wget -qO- https://raw.githubusercontent.com/CM2Walki/CSGO/dev/etc/cfg.tar.gz | tar xvzf - \
+		&& wget -qO- https://mms.alliedmods.net/mmsdrop/1.10/mmsource-1.10.7-git971-linux.tar.gz | tar xvzf - \
+		&& wget -qO- https://sm.alliedmods.net/smdrop/1.10/sourcemod-1.10.0-git6454-linux.tar.gz | tar xvzf -" \
 	&& apt-get remove --purge -y \
 		wget \
 	&& apt-get clean autoclean \
@@ -70,4 +72,4 @@ ENTRYPOINT ${STEAMCMDDIR}/steamcmd.sh \
 			+mapgroup $SRCDS_MAPGROUP +map $SRCDS_STARTMAP +sv_setsteamaccount $SRCDS_TOKEN +rcon_password $SRCDS_RCONPW +sv_password $SRCDS_PW +sv_region $SRCDS_REGION
 
 # Expose ports
-EXPOSE 27015 27020 27005 51840
+EXPOSE 27015/tcp 27015/udp 27020/udp
