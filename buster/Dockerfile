@@ -8,22 +8,20 @@ LABEL maintainer="walentinlamonos@gmail.com"
 ENV STEAMAPPID 740
 ENV STEAMAPPDIR /home/steam/csgo-dedicated
 
-# Run Steamcmd and install CSGO
 # Create autoupdate config
-# Download ESL config
+# Add entry script & ESL config
 # Remove packages and tidy up
 RUN set -x \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
 		wget=1.20.1-1.1 \
 		ca-certificates=20190110 \
-	&& su steam -c \
-		"${STEAMCMDDIR}/steamcmd.sh \
-			+login anonymous \
-			+force_install_dir ${STEAMAPPDIR} \
-			+app_update ${STEAMAPPID} validate \
-			+quit \
-		&& { \
+	&& mkdir -p ${STEAMAPPDIR}/csgo \
+	&& cd ${STEAMAPPDIR} \
+	&& wget https://raw.githubusercontent.com/CM2Walki/CSGO/dev/etc/entry.sh \
+	&& chmod 755 ${STEAMAPPDIR}/entry.sh \
+	&& cd ${STEAMAPPDIR}/csgo \
+	&& { \
 			echo '@ShutdownOnFailedCommand 1'; \
 			echo '@NoPromptForPassword 1'; \
 			echo 'login anonymous'; \
@@ -31,8 +29,8 @@ RUN set -x \
 			echo 'app_update ${STEAMAPPID}'; \
 			echo 'quit'; \
 		} > ${STEAMAPPDIR}/csgo_update.txt \
-		&& cd ${STEAMAPPDIR}/csgo \
-		&& wget -qO- https://raw.githubusercontent.com/CM2Walki/CSGO/dev/etc/cfg.tar.gz | tar xvzf -" \
+	&& wget -qO- https://raw.githubusercontent.com/CM2Walki/CSGO/dev/etc/cfg.tar.gz | tar xvzf - \
+	&& chown -R steam:steam ${STEAMAPPDIR} \
 	&& apt-get remove --purge -y \
 		wget \
 	&& apt-get clean autoclean \
@@ -60,15 +58,7 @@ WORKDIR $STEAMAPPDIR
 
 VOLUME $STEAMAPPDIR
 
-# Set Entrypoint:
-# 1. Update server
-# 2. Start server
-ENTRYPOINT ${STEAMCMDDIR}/steamcmd.sh \
-		+login anonymous +force_install_dir ${STEAMAPPDIR} +app_update ${STEAMAPPID} +quit \
-		&& ${STEAMAPPDIR}/srcds_run \
-			-game csgo -console -autoupdate -steam_dir ${STEAMCMDDIR} -steamcmd_script ${STEAMAPPDIR}/csgo_update.txt -usercon +fps_max $SRCDS_FPSMAX \
-			-tickrate $SRCDS_TICKRATE -port $SRCDS_PORT +tv_port $SRCDS_TV_PORT +clientport $SRCDS_CLIENT_PORT -maxplayers_override $SRCDS_MAXPLAYERS +game_type $SRCDS_GAMETYPE +game_mode $SRCDS_GAMEMODE \
-			+mapgroup $SRCDS_MAPGROUP +map $SRCDS_STARTMAP +sv_setsteamaccount $SRCDS_TOKEN +rcon_password $SRCDS_RCONPW +sv_password $SRCDS_PW +sv_region $SRCDS_REGION
+ENTRYPOINT ${STEAMAPPDIR}/entry.sh
 
 # Expose ports
 EXPOSE 27015/tcp 27015/udp 27020/udp
