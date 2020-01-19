@@ -16,10 +16,10 @@ RUN set -x \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
 		wget=1.20.1-1.1 \
 		ca-certificates=20190110 \
-	&& cd ${STEAMCMDDIR} \
-	&& wget https://raw.githubusercontent.com/CM2Walki/CSGO/dev/etc/entry.sh \
-	&& chmod 755 ${STEAMCMDDIR}/entry.sh \
 	&& mkdir -p ${STEAMAPPDIR}/csgo \
+	&& cd ${STEAMAPPDIR} \
+	&& wget https://raw.githubusercontent.com/CM2Walki/CSGO/dev/etc/entry.sh \
+	&& chmod 755 ${STEAMAPPDIR}/entry.sh \
 	&& cd ${STEAMAPPDIR}/csgo \
 	&& { \
 			echo '@ShutdownOnFailedCommand 1'; \
@@ -58,7 +58,7 @@ WORKDIR $STEAMAPPDIR
 
 VOLUME $STEAMAPPDIR
 
-ENTRYPOINT ${STEAMCMDDIR}/entry.sh
+ENTRYPOINT ${STEAMAPPDIR}/entry.sh
 
 # Expose ports
 EXPOSE 27015/tcp 27015/udp 27020/udp
