@@ -8,15 +8,17 @@ LABEL maintainer="walentinlamonos@gmail.com"
 ENV STEAMAPPID 740
 ENV STEAMAPPDIR /home/steam/csgo-dedicated
 
-# Run Steamcmd and install CSGO
 # Create autoupdate config
-# Download ESL config
+# Add entry script & ESL config
 # Remove packages and tidy up
 RUN set -x \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
 		wget=1.20.1-1.1 \
 		ca-certificates=20190110 \
+	&& cd ${STEAMCMDDIR} \
+	&& wget https://raw.githubusercontent.com/CM2Walki/CSGO/dev/etc/entry.sh \
+	&& chmod 755 ${STEAMCMDDIR}/entry.sh \
 	&& mkdir -p ${STEAMAPPDIR}/csgo \
 	&& cd ${STEAMAPPDIR}/csgo \
 	&& { \
@@ -36,9 +38,6 @@ RUN set -x \
 	&& apt-get clean autoclean \
 	&& apt-get autoremove -y \
 	&& rm -rf /var/lib/apt/lists/*
-
-ADD csgo.sh /usr/bin
-RUN chmod 755 /usr/bin/csgo.sh
 
 ENV SRCDS_FPSMAX=300 \
 	SRCDS_TICKRATE=128 \
@@ -61,10 +60,7 @@ WORKDIR $STEAMAPPDIR
 
 VOLUME $STEAMAPPDIR
 
-# Set Entrypoint:
-# 1. Update server
-# 2. Start server
-CMD ["csgo.sh"]
+ENTRYPOINT ["${STEAMCMDDIR}/entry.sh"]
 
 # Expose ports
 EXPOSE 27015/tcp 27015/udp 27020/udp
