@@ -1,4 +1,4 @@
-[![](https://img.shields.io/codacy/grade/e201fa6b35074864b200eaf558563a22.svg)](https://hub.docker.com/r/cm2network/csgo/) [![Docker Build Status](https://img.shields.io/badge/docker%20build-passing-brightgreen.svg)](https://hub.docker.com/r/cm2network/csgo/)<sup><sup>1</sup></sup> [![Docker Stars](https://img.shields.io/docker/stars/cm2network/csgo.svg)](https://hub.docker.com/r/cm2network/csgo/) [![Docker Pulls](https://img.shields.io/docker/pulls/cm2network/csgo.svg)](https://hub.docker.com/r/cm2network/csgo/) [![](https://images.microbadger.com/badges/image/cm2network/csgo.svg)](https://microbadger.com/images/cm2network/csgo)
+[![](https://img.shields.io/codacy/grade/e201fa6b35074864b200eaf558563a22.svg)](https://hub.docker.com/r/cm2network/csgo/) [![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/cm2network/csgo)](https://hub.docker.com/r/cm2network/csgo/)[![Docker Stars](https://img.shields.io/docker/stars/cm2network/csgo.svg)](https://hub.docker.com/r/cm2network/csgo/) [![Docker Pulls](https://img.shields.io/docker/pulls/cm2network/csgo.svg)](https://hub.docker.com/r/cm2network/csgo/) [![](https://images.microbadger.com/badges/image/cm2network/csgo.svg)](https://microbadger.com/images/cm2network/csgo)
 # Supported tags and respective `Dockerfile` links
 -	[`latest` (*buster/Dockerfile*)](https://github.com/CM2Walki/CSGO/blob/master/buster/Dockerfile)
 -	[`metamod` (*buster-metamod/Dockerfile*)](https://github.com/CM2Walki/CSGO/blob/master/buster-metamod/Dockerfile)
@@ -48,9 +48,6 @@ SRCDS_MAPGROUP="mg_active"
 The image contains a copy of the official ESL config files from [here](https://play.eslgaming.com/download/26251762/). The files can be found in the following directory: */home/steam/csgo-dedicated/csgo/cfg*
 
 If you want to learn more about configuring a CS:GO server check this [documentation](https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Dedicated_Servers#Advanced_Configuration).
-
-## Docker Hub Build
-<sup>1</sup> The image is too large (> 10 GBs) to be created using automated build and is therefor pushed manually.
 
 # Image Variants:
 The `csgo` images come in three flavors, each designed for a specific use case.
