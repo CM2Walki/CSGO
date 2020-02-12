@@ -14,8 +14,9 @@ ENV STEAMAPPDIR /home/steam/csgo-dedicated
 RUN set -x \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
-		wget=1.20.1-1.1 \
 		ca-certificates=20190110 \
+		wget=1.20.1-1.1 \
+		net-tools \
 	&& mkdir -p ${STEAMAPPDIR}/csgo \
 	&& cd ${STEAMAPPDIR} \
 	&& wget https://raw.githubusercontent.com/CM2Walki/CSGO/master/etc/entry.sh \
