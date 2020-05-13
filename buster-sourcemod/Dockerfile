@@ -30,8 +30,8 @@ RUN set -x \
 			echo 'quit'; \
 		} > ${STEAMAPPDIR}/csgo_update.txt \
 	&& wget -qO- https://raw.githubusercontent.com/CM2Walki/CSGO/master/etc/cfg.tar.gz | tar xvzf - \
-	&& wget -qO- https://mms.alliedmods.net/mmsdrop/1.10/mmsource-1.10.7-git971-linux.tar.gz | tar xvzf - \
-	&& wget -qO- https://sm.alliedmods.net/smdrop/1.10/sourcemod-1.10.0-git6454-linux.tar.gz | tar xvzf - \
+	&&  wget -qO- https://mms.alliedmods.net/mmsdrop/1.11/mmsource-1.11.0-git1130-linux.tar.gz | tar xvzf - \
+	&& wget -qO- https://sm.alliedmods.net/smdrop/1.11/sourcemod-1.11.0-git6541-linux.tar.gz | tar xvzf - \
 	&& chown -R steam:steam ${STEAMAPPDIR} \
 	&& apt-get remove --purge -y \
 		wget \
