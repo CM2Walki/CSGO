@@ -29,8 +29,6 @@ RUN set -x \
 		} > ${STEAMAPPDIR}/csgo_update.txt \
 	&& wget -qO- https://raw.githubusercontent.com/CM2Walki/CSGO/master/etc/cfg.tar.gz | tar xvzf - -C "${STEAMAPPDIR}/csgo" \
 	&& chown -R steam:steam "${STEAMAPPDIR}" \
-	&& apt-get clean autoclean \
-	&& apt-get autoremove -y \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV SRCDS_FPSMAX=300 \
