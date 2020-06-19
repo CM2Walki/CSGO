@@ -17,7 +17,7 @@ RUN set -x \
 		wget=1.20.1-1.1 \
 		ca-certificates=20190110 \
 	&& mkdir -p ${STEAMAPPDIR}/csgo \
-	&& wget https://raw.githubusercontent.com/CM2Walki/CSGO/master/etc/entry.sh -O "${STEAMAPPDIR}/entry.sh" \
+	&& wget https://raw.githubusercontent.com/CM2Walki/CSGO/dev/etc/entry.sh -O "${STEAMAPPDIR}/entry.sh" \
 	&& chmod 755 "${STEAMAPPDIR}/entry.sh" \
 	&& { \
 			echo '@ShutdownOnFailedCommand 1'; \
@@ -27,7 +27,7 @@ RUN set -x \
 			echo 'app_update ${STEAMAPPID}'; \
 			echo 'quit'; \
 		} > ${STEAMAPPDIR}/csgo_update.txt \
-	&& wget -qO- https://raw.githubusercontent.com/CM2Walki/CSGO/master/etc/cfg.tar.gz | tar xvzf - -C "${STEAMAPPDIR}/csgo" \
+	&& wget -qO- https://raw.githubusercontent.com/CM2Walki/CSGO/dev/etc/cfg.tar.gz | tar xvzf - -C "${STEAMAPPDIR}/csgo" \
 	&& chown -R steam:steam "${STEAMAPPDIR}" \
 	&& rm -rf /var/lib/apt/lists/*
 
@@ -56,7 +56,7 @@ USER steam
 
 WORKDIR "${STEAMAPPDIR}"
 
-ENTRYPOINT "${STEAMAPPDIR}/entry.sh"
+CMD ["bash", "entry.sh"]
 
 # Expose ports
 EXPOSE 27015/tcp 27015/udp 27020/udp

@@ -37,12 +37,20 @@ SRCDS_RCONPW="changeme" (value can be overwritten by csgo/cfg/server.cfg)
 SRCDS_PW="changeme" (value can be overwritten by csgo/cfg/server.cfg) 
 SRCDS_PORT=27015
 SRCDS_TV_PORT=27020
+SRCDS_NET_PUBLIC_ADDRESS="0"
+SRCDS_IP="0"
 SRCDS_FPSMAX=300
 SRCDS_TICKRATE=128
 SRCDS_MAXPLAYERS=14
 SRCDS_STARTMAP="de_dust2"
 SRCDS_REGION=3
 SRCDS_MAPGROUP="mg_active"
+SRCDS_GAMETYPE=0
+SRCDS_GAMEMODE=1
+SRCDS_HOSTNAME="New CSGO Server"
+SRCDS_WORKSHOP_START_MAP=0
+SRCDS_HOST_WORKSHOP_COLLECTION=0
+SRCDS_WORKSHOP_AUTHKEY=""
 ```
 ## Config
 The image contains a copy of the official ESL config files from [here](https://play.eslgaming.com/download/26251762/). The files can be found in the following directory: */home/steam/csgo-dedicated/csgo/cfg*

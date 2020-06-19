@@ -1,5 +1,5 @@
 #!/bin/bash
-${STEAMCMDDIR}/steamcmd.sh +login anonymous \
+bash ${STEAMCMDDIR}/steamcmd.sh +login anonymous \
 				+force_install_dir ${STEAMAPPDIR} \
 				+app_update ${STEAMAPPID} \
 				+quit
@@ -7,9 +7,7 @@ ${STEAMCMDDIR}/steamcmd.sh +login anonymous \
 # Change hostname on first launch (you can comment this out if it has done it's purpose)
 sed -i -e 's/{{SERVER_HOSTNAME}}/'"$SRCDS_HOSTNAME"'/g' ${STEAMAPPDIR}/csgo/cfg/server.cfg
 
-${STEAMAPPDIR}/srcds_run -game csgo 
-			-console \
-			-autoupdate \
+bash ${STEAMAPPDIR}/srcds_run -game csgo -console -autoupdate \
 			-steam_dir ${STEAMCMDDIR} \
 			-steamcmd_script ${STEAMAPPDIR}/csgo_update.txt \
 			-usercon \
