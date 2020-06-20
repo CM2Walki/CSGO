@@ -26,7 +26,7 @@ RUN set -x \
 		echo 'force_install_dir ${STEAMAPPDIR}'; \
 		echo 'app_update ${STEAMAPPID}'; \
 		echo 'quit'; \
-	   } > ${STEAMAPPDIR}/csgo_update.txt \
+	   } > "${STEAMAPPDIR}"/csgo_update.txt \
 	&& wget -qO- https://raw.githubusercontent.com/CM2Walki/CSGO/master/etc/cfg.tar.gz | tar xvzf - -C "${STEAMAPPDIR}/csgo" \
 	&& chown -R steam:steam "${STEAMAPPDIR}" \
 	&& rm -rf /var/lib/apt/lists/*
