@@ -16,7 +16,7 @@ RUN set -x \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
 		wget=1.20.1-1.1 \
 		ca-certificates=20190110 \
-	&& mkdir -p ${STEAMAPPDIR}/csgo \
+	&& mkdir -p "${STEAMAPPDIR}"/csgo \
 	&& wget https://raw.githubusercontent.com/CM2Walki/CSGO/master/etc/entry.sh -O "${STEAMAPPDIR}/entry.sh" \
 	&& chmod 755 "${STEAMAPPDIR}/entry.sh" \
 	&& { \
@@ -27,7 +27,7 @@ RUN set -x \
 		echo 'app_update ${STEAMAPPID}'; \
 		echo 'quit'; \
 	   } > ${STEAMAPPDIR}/csgo_update.txt \
-	&& wget -qO- https://raw.githubusercontent.com/CM2Walki/CSGO/dev/etc/cfg.tar.gz | tar xvzf - -C "${STEAMAPPDIR}/csgo" \
+	&& wget -qO- https://raw.githubusercontent.com/CM2Walki/CSGO/master/etc/cfg.tar.gz | tar xvzf - -C "${STEAMAPPDIR}/csgo" \
 	&& chown -R steam:steam "${STEAMAPPDIR}" \
 	&& rm -rf /var/lib/apt/lists/*
 
