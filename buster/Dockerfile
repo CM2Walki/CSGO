@@ -20,13 +20,13 @@ RUN set -x \
 	&& wget https://raw.githubusercontent.com/CM2Walki/CSGO/dev/etc/entry.sh -O "${STEAMAPPDIR}/entry.sh" \
 	&& chmod 755 "${STEAMAPPDIR}/entry.sh" \
 	&& { \
-			echo '@ShutdownOnFailedCommand 1'; \
-			echo '@NoPromptForPassword 1'; \
-			echo 'login anonymous'; \
-			echo 'force_install_dir ${STEAMAPPDIR}'; \
-			echo 'app_update ${STEAMAPPID}'; \
-			echo 'quit'; \
-		} > ${STEAMAPPDIR}/csgo_update.txt \
+		echo '@ShutdownOnFailedCommand 1'; \
+		echo '@NoPromptForPassword 1'; \
+		echo 'login anonymous'; \
+		echo 'force_install_dir ${STEAMAPPDIR}'; \
+		echo 'app_update ${STEAMAPPID}'; \
+		echo 'quit'; \
+	   } > ${STEAMAPPDIR}/csgo_update.txt \
 	&& wget -qO- https://raw.githubusercontent.com/CM2Walki/CSGO/dev/etc/cfg.tar.gz | tar xvzf - -C "${STEAMAPPDIR}/csgo" \
 	&& chown -R steam:steam "${STEAMAPPDIR}" \
 	&& rm -rf /var/lib/apt/lists/*
