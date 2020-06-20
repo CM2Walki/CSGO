@@ -26,6 +26,8 @@ $ docker run -d --net=host -v /home/steam/csgo-dedicated/ --name=csgo-dedicated2
 ```
 
 `SRCDS_TOKEN` **is required to be listed & reachable;** [https://steamcommunity.com/dev/managegameservers](https://steamcommunity.com/dev/managegameservers)<br/><br/>
+`SRCDS_WORKSHOP_AUTHKEY` **is required to use the workshop;** [https://steamcommunity.com/dev/apikey](https://steamcommunity.com/dev/apikey)<br/><br/>
+
 **It's also recommended to use "--cpuset-cpus=" to limit the game server to a specific core & thread.**<br/>
 **The container will automatically update the game on startup, so if there is a game update just restart the container.**
 
