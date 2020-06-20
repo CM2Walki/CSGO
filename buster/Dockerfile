@@ -54,7 +54,7 @@ ENV SRCDS_FPSMAX=300 \
 
 USER steam
 
-WORKDIR "${STEAMAPPDIR}"
+WORKDIR ${STEAMAPPDIR}
 
 CMD ["bash", "entry.sh"]
 
