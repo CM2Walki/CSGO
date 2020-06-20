@@ -17,15 +17,17 @@ This Docker image contains the dedicated server of the game.
 
 Running on the *host* interface (recommended):<br/>
 ```console
-$ docker run -d --net=host --name=csgo-dedicated -e SRCDS_TOKEN={YOURTOKEN} cm2network/csgo
+$ docker run -d --net=host -v /home/steam/csgo-dedicated/ --name=csgo-dedicated -e SRCDS_TOKEN={YOURTOKEN} cm2network/csgo
 ```
 
 Running multiple instances (increment SRCDS_PORT and SRCDS_TV_PORT):
 ```console
-$ docker run -d --net=host -e SRCDS_PORT=27016 -e SRCDS_TV_PORT=27021 -e SRCDS_TOKEN={YOURTOKEN} --name=csgo-dedicated2 cm2network/csgo
+$ docker run -d --net=host -v /home/steam/csgo-dedicated/ --name=csgo-dedicated2 -e SRCDS_PORT=27016 -e SRCDS_TV_PORT=27021 -e SRCDS_TOKEN={YOURTOKEN} cm2network/csgo
 ```
 
 `SRCDS_TOKEN` **is required to be listed & reachable;** [https://steamcommunity.com/dev/managegameservers](https://steamcommunity.com/dev/managegameservers)<br/><br/>
+`SRCDS_WORKSHOP_AUTHKEY` **is required to use the workshop;** [https://steamcommunity.com/dev/apikey](https://steamcommunity.com/dev/apikey)<br/><br/>
+
 **It's also recommended to use "--cpuset-cpus=" to limit the game server to a specific core & thread.**<br/>
 **The container will automatically update the game on startup, so if there is a game update just restart the container.**
 
@@ -37,12 +39,20 @@ SRCDS_RCONPW="changeme" (value can be overwritten by csgo/cfg/server.cfg)
 SRCDS_PW="changeme" (value can be overwritten by csgo/cfg/server.cfg) 
 SRCDS_PORT=27015
 SRCDS_TV_PORT=27020
+SRCDS_NET_PUBLIC_ADDRESS="0" (public facing ip, useful for local network setups)
+SRCDS_IP="0" (local ip to bind)
 SRCDS_FPSMAX=300
 SRCDS_TICKRATE=128
 SRCDS_MAXPLAYERS=14
 SRCDS_STARTMAP="de_dust2"
 SRCDS_REGION=3
 SRCDS_MAPGROUP="mg_active"
+SRCDS_GAMETYPE=0
+SRCDS_GAMEMODE=1
+SRCDS_HOSTNAME="New CSGO Server" (first launch only)
+SRCDS_WORKSHOP_START_MAP=0
+SRCDS_HOST_WORKSHOP_COLLECTION=0
+SRCDS_WORKSHOP_AUTHKEY="" (required to use host_workshop_map)
 ```
 ## Config
 The image contains a copy of the official ESL config files from [here](https://play.eslgaming.com/download/26251762/). The files can be found in the following directory: */home/steam/csgo-dedicated/csgo/cfg*
