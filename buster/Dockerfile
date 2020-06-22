@@ -7,7 +7,7 @@ LABEL maintainer="walentinlamonos@gmail.com"
 
 ENV STEAMAPPID 740
 ENV STEAMAPP csgo
-ENV STEAMAPPDIR /home/steam/"${STEAMAPP}"-dedicated
+ENV STEAMAPPDIR "/home/steam/${STEAMAPP}-dedicated"
 ENV DLURL https://raw.githubusercontent.com/CM2Walki/CSGO
 
 # Create autoupdate config
