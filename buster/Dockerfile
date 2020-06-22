@@ -8,6 +8,7 @@ LABEL maintainer="walentinlamonos@gmail.com"
 ENV STEAMAPPID 740
 ENV STEAMAPP csgo
 ENV STEAMAPPDIR /home/steam/"${STEAMAPP}"-dedicated
+ENV DLURL https://raw.githubusercontent.com/CM2Walki/CSGO
 
 # Create autoupdate config
 # Add entry script & ESL config
@@ -18,7 +19,7 @@ RUN set -x \
 		wget=1.20.1-1.1 \
 		ca-certificates=20190110 \
 	&& mkdir -p "${STEAMAPPDIR}/${STEAMAPP}" \
-	&& wget https://raw.githubusercontent.com/CM2Walki/CSGO/dev/etc/entry.sh -O "${STEAMAPPDIR}/entry.sh" \
+	&& wget "${DLURL}/dev/etc/entry.sh" -O "${STEAMAPPDIR}/entry.sh" \
 	&& chmod 755 "${STEAMAPPDIR}/entry.sh" \
 	&& { \
 		echo '@ShutdownOnFailedCommand 1'; \
@@ -28,7 +29,7 @@ RUN set -x \
 		echo 'app_update "${STEAMAPPID}"'; \
 		echo 'quit'; \
 	   } > "${STEAMAPPDIR}/${STEAMAPP}_update.txt" \
-	&& wget -qO- https://raw.githubusercontent.com/CM2Walki/CSGO/master/etc/cfg.tar.gz | tar xvzf - -C "${STEAMAPPDIR}/${STEAMAPP}" \
+	&& wget -qO- "${DLURL}/master/etc/cfg.tar.gz" | tar xvzf - -C "${STEAMAPPDIR}/${STEAMAPP}" \
 	&& chown -R steam:steam "${STEAMAPPDIR}" \
 	&& rm -rf /var/lib/apt/lists/*
 
