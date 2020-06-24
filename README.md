@@ -22,7 +22,7 @@ $ docker run -d --net=host -v /home/steam/csgo-dedicated/ --name=csgo-dedicated 
 
 Running multiple instances (increment SRCDS_PORT and SRCDS_TV_PORT):
 ```console
-$ docker run -d --net=host -v /home/steam/csgo-dedicated2/ --name=csgo-dedicated -e SRCDS_PORT=27016 -e SRCDS_TV_PORT=27021 -e SRCDS_TOKEN={YOURTOKEN} cm2network/csgo
+$ docker run -d --net=host -v /home/steam/csgo-dedicated/ --name=csgo-dedicated2 -e SRCDS_PORT=27016 -e SRCDS_TV_PORT=27021 -e SRCDS_TOKEN={YOURTOKEN} cm2network/csgo
 ```
 
 `SRCDS_TOKEN` **is required to be listed & reachable;** [https://steamcommunity.com/dev/managegameservers](https://steamcommunity.com/dev/managegameservers)<br/><br/>
