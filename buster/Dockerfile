@@ -6,7 +6,9 @@ FROM cm2network/steamcmd:root
 LABEL maintainer="walentinlamonos@gmail.com"
 
 ENV STEAMAPPID 740
-ENV STEAMAPPDIR /home/steam/csgo-dedicated
+ENV STEAMAPP csgo
+ENV STEAMAPPDIR "/home/steam/${STEAMAPP}-dedicated"
+ENV DLURL https://raw.githubusercontent.com/CM2Walki/CSGO
 
 # Create autoupdate config
 # Add entry script & ESL config
@@ -16,18 +18,18 @@ RUN set -x \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
 		wget=1.20.1-1.1 \
 		ca-certificates=20190110 \
-	&& mkdir -p "${STEAMAPPDIR}"/csgo \
-	&& wget https://raw.githubusercontent.com/CM2Walki/CSGO/master/etc/entry.sh -O "${STEAMAPPDIR}/entry.sh" \
+	&& mkdir -p "${STEAMAPPDIR}/${STEAMAPP}" \
+	&& wget "${DLURL}/master/etc/entry.sh" -O "${STEAMAPPDIR}/entry.sh" \
 	&& chmod 755 "${STEAMAPPDIR}/entry.sh" \
 	&& { \
 		echo '@ShutdownOnFailedCommand 1'; \
 		echo '@NoPromptForPassword 1'; \
 		echo 'login anonymous'; \
-		echo 'force_install_dir ${STEAMAPPDIR}'; \
-		echo 'app_update ${STEAMAPPID}'; \
+		echo 'force_install_dir "${STEAMAPPDIR}"'; \
+		echo 'app_update "${STEAMAPPID}"'; \
 		echo 'quit'; \
-	   } > "${STEAMAPPDIR}"/csgo_update.txt \
-	&& wget -qO- https://raw.githubusercontent.com/CM2Walki/CSGO/master/etc/cfg.tar.gz | tar xvzf - -C "${STEAMAPPDIR}/csgo" \
+	   } > "${STEAMAPPDIR}/${STEAMAPP}_update.txt" \
+	&& wget -qO- "${DLURL}/master/etc/cfg.tar.gz" | tar xvzf - -C "${STEAMAPPDIR}/${STEAMAPP}" \
 	&& chown -R steam:steam "${STEAMAPPDIR}" \
 	&& rm -rf /var/lib/apt/lists/*
 
@@ -47,7 +49,7 @@ ENV SRCDS_FPSMAX=300 \
 	SRCDS_MAPGROUP="mg_active" \
 	SRCDS_GAMETYPE=0 \
 	SRCDS_GAMEMODE=1 \
-	SRCDS_HOSTNAME="New CSGO Server" \
+	SRCDS_HOSTNAME="New \"${STEAMAPP}\" Server" \
 	SRCDS_WORKSHOP_START_MAP=0 \
 	SRCDS_HOST_WORKSHOP_COLLECTION=0 \
 	SRCDS_WORKSHOP_AUTHKEY=""
