@@ -19,7 +19,7 @@ RUN set -x \
 		wget=1.20.1-1.1 \
 		ca-certificates=20190110 \
 	&& mkdir -p "${STEAMAPPDIR}/${STEAMAPP}" \
-	&& wget "${DLURL}/dev/etc/entry.sh" -O "${STEAMAPPDIR}/entry.sh" \
+	&& wget "${DLURL}/master/etc/entry.sh" -O "${STEAMAPPDIR}/entry.sh" \
 	&& chmod 755 "${STEAMAPPDIR}/entry.sh" \
 	&& { \
 		echo '@ShutdownOnFailedCommand 1'; \
