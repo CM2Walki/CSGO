@@ -14,10 +14,11 @@ ENV DLURL https://raw.githubusercontent.com/CM2Walki/CSGO
 # Add entry script & ESL config
 # Remove packages and tidy up
 RUN set -x \
+	&& dpkg --add-architecture i386 \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
 		wget=1.20.1-1.1 \
-		libsdl2-2.0-0=2.0.9+dfsg1-1 \
+		libsdl2-2.0-0:i386=2.0.9+dfsg1-1 \
 		ca-certificates=20190110 \
 	&& mkdir -p "${STEAMAPPDIR}/${STEAMAPP}" \
 	&& wget "${DLURL}/master/etc/entry.sh" -O "${STEAMAPPDIR}/entry.sh" \
