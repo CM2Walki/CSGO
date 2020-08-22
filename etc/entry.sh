@@ -7,6 +7,9 @@ bash "${STEAMCMDDIR}/steamcmd.sh" +login anonymous \
 # Change hostname on first launch (you can comment this out if it has done it's purpose)
 sed -i -e 's/{{SERVER_HOSTNAME}}/'"${SRCDS_HOSTNAME}"'/g' "${STEAMAPPDIR}/${STEAMAPP}/cfg/server.cfg"
 
+# Believe it or not, if you don't do this srcds_run shits itself
+cd ${STEAMAPPDIR}
+
 bash "${STEAMAPPDIR}/srcds_run" -game "${STEAMAPP}" -console -autoupdate \
 			-steam_dir "${STEAMCMDDIR}" \
 			-steamcmd_script "${STEAMAPPDIR}/${STEAMAPP}_update.txt" \
