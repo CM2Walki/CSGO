@@ -7,7 +7,7 @@ LABEL maintainer="walentinlamonos@gmail.com"
 
 ENV STEAMAPPID 740
 ENV STEAMAPP csgo
-ENV STEAMAPPDIR "/home/steam/${STEAMAPP}-dedicated"
+ENV STEAMAPPDIR "${HOMEDIR}/${STEAMAPP}-dedicated"
 ENV DLURL https://raw.githubusercontent.com/CM2Walki/CSGO
 
 # Create autoupdate config
@@ -21,7 +21,7 @@ RUN set -x \
 		libsdl2-2.0-0:i386=2.0.9+dfsg1-1 \
 		ca-certificates=20190110 \
 	&& mkdir -p "${STEAMAPPDIR}/${STEAMAPP}" \
-	&& wget "${DLURL}/master/etc/entry.sh" -O "${STEAMAPPDIR}/entry.sh" \
+	&& wget "${DLURL}/master/etc/entry.sh" -O "${HOMEDIR}/entry.sh" \
 	&& chmod 755 "${STEAMAPPDIR}/entry.sh" \
 	&& { \
 		echo '@ShutdownOnFailedCommand 1'; \
@@ -32,7 +32,7 @@ RUN set -x \
 		echo 'quit'; \
 	   } > "${STEAMAPPDIR}/${STEAMAPP}_update.txt" \
 	&& wget -qO- "${DLURL}/master/etc/cfg.tar.gz" | tar xvzf - -C "${STEAMAPPDIR}/${STEAMAPP}" \
-	&& chown -R steam:steam "${STEAMAPPDIR}" \
+	&& chown -R "${USER}:${USER}" "${STEAMAPPDIR}" \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV SRCDS_FPSMAX=300 \
@@ -56,9 +56,9 @@ ENV SRCDS_FPSMAX=300 \
 	SRCDS_HOST_WORKSHOP_COLLECTION=0 \
 	SRCDS_WORKSHOP_AUTHKEY=""
 
-USER steam
+USER ${USER}
 
-WORKDIR ${STEAMAPPDIR}
+WORKDIR ${HOMEDIR}
 
 CMD ["bash", "entry.sh"]
 
