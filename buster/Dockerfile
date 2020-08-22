@@ -22,7 +22,8 @@ RUN set -x \
 		ca-certificates=20190110 \
 	&& mkdir -p "${STEAMAPPDIR}/${STEAMAPP}" \
 	&& wget "${DLURL}/master/etc/entry.sh" -O "${HOMEDIR}/entry.sh" \
-	&& chmod 755 "${HOMEDIR}/entry.sh" \
+	&& chmod 755 "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}/${STEAMAPP}" \
+	&& chown "${USER}:${USER}" "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}/${STEAMAPP}" \
 	&& { \
 		echo '@ShutdownOnFailedCommand 1'; \
 		echo '@NoPromptForPassword 1'; \
