@@ -9,7 +9,19 @@ bash "${STEAMCMDDIR}/steamcmd.sh" +login anonymous \
 # Handle config being missing if we use a bind mount
 if [ ! -f "${STEAMAPPDIR}/${STEAMAPP}/cfg/server.cfg" ]; then
 	# Download & extract the config
-	wget -qO- "${DLURL}/master/etc/cfg.tar.gz" | tar xvzf - -C "${STEAMAPPDIR}/${STEAMAPP}"	
+	wget -qO- "${DLURL}/master/etc/cfg.tar.gz" | tar xvzf - -C "${STEAMAPPDIR}/${STEAMAPP}"
+	
+	# Are we in a metamod container?
+	if [ ! -z "$METAMOD_VERSION" ]; then
+		LATESTMM=$(wget -qO- https://mms.alliedmods.net/mmsdrop/"${METAMOD_VERSION}"/mmsource-latest-linux)
+		wget -qO- https://mms.alliedmods.net/mmsdrop/"${METAMOD_VERSION}"/"${LATESTMM}" | tar xvzf - -C "${STEAMAPPDIR}/${STEAMAPP}"	
+	fi
+
+	# Are we in a sourcemod container?
+	if [ ! -z "$SOURCEMOD_VERSION" ]; then
+		LATESTSM=$(wget -qO- https://sm.alliedmods.net/smdrop/"${SOURCEMOD_VERSION}"/sourcemod-latest-linux)
+		wget -qO- https://sm.alliedmods.net/smdrop/"${SOURCEMOD_VERSION}"/"${LATESTSM}" | tar xvzf - -C "${STEAMAPPDIR}/${STEAMAPP}"
+	fi
 fi
 
 # Change hostname on first launch (you can comment this out if it has done it's purpose)
