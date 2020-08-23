@@ -4,6 +4,12 @@ bash "${STEAMCMDDIR}/steamcmd.sh" +login anonymous \
 				+app_update "${STEAMAPPID}" \
 				+quit
 
+# Handle config being missing if we use a bind mount
+if [ ! -f "${STEAMAPPDIR}/${STEAMAPP}/cfg/server.cfg" ]; then
+	# Download & extract the config
+	wget -qO- "${DLURL}/master/etc/cfg.tar.gz" | tar xvzf - -C "${STEAMAPPDIR}/${STEAMAPP}"	
+fi
+
 # Change hostname on first launch (you can comment this out if it has done it's purpose)
 sed -i -e 's/{{SERVER_HOSTNAME}}/'"${SRCDS_HOSTNAME}"'/g' "${STEAMAPPDIR}/${STEAMAPP}/cfg/server.cfg"
 
@@ -12,7 +18,7 @@ cd ${STEAMAPPDIR}
 
 bash "${STEAMAPPDIR}/srcds_run" -game "${STEAMAPP}" -console -autoupdate \
 			-steam_dir "${STEAMCMDDIR}" \
-			-steamcmd_script "${STEAMAPPDIR}/${STEAMAPP}_update.txt" \
+			-steamcmd_script "${HOMEDIR}/${STEAMAPP}_update.txt" \
 			-usercon \
 			+fps_max "${SRCDS_FPSMAX}" \
 			-tickrate "${SRCDS_TICKRATE}" \

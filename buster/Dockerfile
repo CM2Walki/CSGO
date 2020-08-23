@@ -29,7 +29,7 @@ RUN set -x \
 		echo 'force_install_dir "${STEAMAPPDIR}"'; \
 		echo 'app_update "${STEAMAPPID}"'; \
 		echo 'quit'; \
-	   } > "${STEAMAPPDIR}/${STEAMAPP}_update.txt" \
+	   } > "${HOMEDIR}/${STEAMAPP}_update.txt" \
 	&& wget -qO- "${DLURL}/master/etc/cfg.tar.gz" | tar xvzf - -C "${STEAMAPPDIR}/${STEAMAPP}" \
 	&& chown -R "${USER}:${USER}" "${STEAMAPPDIR}" \
 	&& rm -rf /var/lib/apt/lists/*
