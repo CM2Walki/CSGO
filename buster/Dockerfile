@@ -14,7 +14,6 @@ ENV DLURL https://raw.githubusercontent.com/CM2Walki/CSGO
 # Add entry script & ESL config
 # Remove packages and tidy up
 RUN set -x \
-	&& dpkg --add-architecture i386 \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
 		wget=1.20.1-1.1 \
