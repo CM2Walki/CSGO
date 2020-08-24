@@ -30,8 +30,6 @@ RUN set -x \
 		echo 'app_update "${STEAMAPPID}"'; \
 		echo 'quit'; \
 	   } > "${HOMEDIR}/${STEAMAPP}_update.txt" \
-	&& wget -qO- "${DLURL}/master/etc/cfg.tar.gz" | tar xvzf - -C "${STEAMAPPDIR}/${STEAMAPP}" \
-	&& chown -R "${USER}:${USER}" "${STEAMAPPDIR}" \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV SRCDS_FPSMAX=300 \
@@ -56,6 +54,8 @@ ENV SRCDS_FPSMAX=300 \
 	SRCDS_WORKSHOP_AUTHKEY=""
 
 USER ${USER}
+
+VOLUME ${STEAMAPPDIR}
 
 WORKDIR ${HOMEDIR}
 

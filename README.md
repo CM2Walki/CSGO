@@ -17,12 +17,19 @@ This Docker image contains the dedicated server of the game.
 
 Running on the *host* interface (recommended):<br/>
 ```console
-$ docker run -d --net=host -v /home/steam/csgo-dedicated/ --name=csgo-dedicated -e SRCDS_TOKEN={YOURTOKEN} cm2network/csgo
+$ docker run -d --net=host --name=csgo-dedicated -e SRCDS_TOKEN={YOURTOKEN} cm2network/csgo
+```
+
+Running using a bind mount for data persistence on container recreation:
+```console
+$ mkdir -p $(pwd)/csgo-data
+$ chmod 777 $(pwd)/csgo-data # Makes sure the directory is writeable by the unpriviliged container user
+$ docker run -d --net=host -v $(pwd)/csgo-data:/home/steam/csgo-dedicated/ --name=csgo-dedicated -e SRCDS_PORT=27016 -e SRCDS_TV_PORT=27021 -e SRCDS_TOKEN={YOURTOKEN} cm2network/csgo
 ```
 
 Running multiple instances (increment SRCDS_PORT and SRCDS_TV_PORT):
 ```console
-$ docker run -d --net=host -v /home/steam/csgo-dedicated/ --name=csgo-dedicated2 -e SRCDS_PORT=27016 -e SRCDS_TV_PORT=27021 -e SRCDS_TOKEN={YOURTOKEN} cm2network/csgo
+$ docker run -d --net=host --name=csgo-dedicated2 -e SRCDS_PORT=27016 -e SRCDS_TV_PORT=27021 -e SRCDS_TOKEN={YOURTOKEN} cm2network/csgo
 ```
 
 `SRCDS_TOKEN` **is required to be listed & reachable;** [https://steamcommunity.com/dev/managegameservers](https://steamcommunity.com/dev/managegameservers)<br/><br/>
