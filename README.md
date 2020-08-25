@@ -23,7 +23,7 @@ $ docker run -d --net=host --name=csgo-dedicated -e SRCDS_TOKEN={YOURTOKEN} cm2n
 Running using a bind mount for data persistence on container recreation:
 ```console
 $ mkdir -p $(pwd)/csgo-data
-$ chmod 777 $(pwd)/csgo-data # Makes sure the directory is writeable by the unpriviliged container user
+$ chmod 777 $(pwd)/csgo-data # Makes sure the directory is writeable by the unprivileged container user
 $ docker run -d --net=host -v $(pwd)/csgo-data:/home/steam/csgo-dedicated/ --name=csgo-dedicated -e SRCDS_TOKEN={YOURTOKEN} cm2network/csgo
 ```
 
