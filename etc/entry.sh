@@ -52,4 +52,5 @@ bash "${STEAMAPPDIR}/srcds_run" -game "${STEAMAPP}" -console -autoupdate \
 			-ip "${SRCDS_IP}" \
 			+host_workshop_collection "${SRCDS_HOST_WORKSHOP_COLLECTION}" \
 			+workshop_start_map "${SRCDS_WORKSHOP_START_MAP}" \
-			-authkey "${SRCDS_WORKSHOP_AUTHKEY}"
+			-authkey "${SRCDS_WORKSHOP_AUTHKEY}" \
+			"${ADDITIONAL_ARGS}"

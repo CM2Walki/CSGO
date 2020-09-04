@@ -60,6 +60,7 @@ SRCDS_HOSTNAME="New CSGO Server" (first launch only)
 SRCDS_WORKSHOP_START_MAP=0
 SRCDS_HOST_WORKSHOP_COLLECTION=0
 SRCDS_WORKSHOP_AUTHKEY="" (required to use host_workshop_map)
+ADDITIONAL_ARGS="" (Pass additional arguments to srcds. Make sure to escape correctly!)
 ```
 ## Config
 The image contains a copy of the official ESL config files from [here](https://play.eslgaming.com/download/26251762/). You can edit the config using this command:
