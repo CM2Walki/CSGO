@@ -30,7 +30,8 @@ RUN set -x \
 	   } > "${HOMEDIR}/${STEAMAPP}_update.txt" \
 	&& chmod +x "${HOMEDIR}/entry.sh" \
 	&& chown -R "${USER}:${USER}" "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}" "${HOMEDIR}/${STEAMAPP}_update.txt" \	
-	&& rm -rf /var/lib/apt/lists/*
+	&& rm -rf /var/lib/apt/lists/* \
+	&& apt-get install lib32z1
 
 ENV SRCDS_FPSMAX=300 \
 	SRCDS_TICKRATE=128 \
