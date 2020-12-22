@@ -18,6 +18,7 @@ RUN set -x \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
 		wget=1.20.1-1.1 \
 		ca-certificates=20190110 \
+		lib32z1 \
 	&& mkdir -p "${STEAMAPPDIR}" \
 	&& wget --max-redirect=30 "${DLURL}/master/etc/entry.sh" -O "${HOMEDIR}/entry.sh" \
 	&& { \
@@ -30,9 +31,8 @@ RUN set -x \
 	   } > "${HOMEDIR}/${STEAMAPP}_update.txt" \
 	&& chmod +x "${HOMEDIR}/entry.sh" \
 	&& chown -R "${USER}:${USER}" "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}" "${HOMEDIR}/${STEAMAPP}_update.txt" \	
-	&& rm -rf /var/lib/apt/lists/* \
-	&& apt-get install lib32z1
-
+	&& rm -rf /var/lib/apt/lists/* 
+	
 ENV SRCDS_FPSMAX=300 \
 	SRCDS_TICKRATE=128 \
 	SRCDS_PORT=27015 \
