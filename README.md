@@ -82,3 +82,13 @@ This is a specialized image. It contains the plugin environment [Metamod:Source]
 
 ## `csgo:sourcemod`
 This is another specialized image. It contains both [Metamod:Source](https://www.sourcemm.net) and the popular server plugin [SourceMod](https://www.sourcemod.net) which can be found in the addons directory. [SourceMod](https://www.sourcemod.net) supports a wide variety of additional plugins that can be found [here](https://www.sourcemod.net/plugins.php).
+
+# Common Issues
+
+- Server cannot be found on the server browser or is unreachable
+
+The environment variable SCRDS_TOKEN is a required variable for the server to be listed and reachable outside of the local network. Valve requires this token for all of its source titles. You can get a token [here](https://steamcommunity.com/dev/managegameservers).
+
+- Container exiting unexpectably: Error! App '740' state is 0x202 after update job.
+
+Ensure that you have enough disk space to install the game server. It requires ~20GB.
