@@ -38,7 +38,7 @@ if [ -f "$autoexec_file" ]; then
         # HERE doc to not add extra file
         while IFS=$'\t' read -r name default
         do
-                if ! grep -q ^\s*$name "$autoexec_file"; then
+                if ! grep -q '^\s*$name' "$autoexec_file"; then
                         ow_args="${ow_args} $default"
                 fi
         done <<EOM
@@ -72,5 +72,5 @@ bash "${STEAMAPPDIR}/srcds_run" -game "${STEAMAPP}" -console -autoupdate \
 			+host_workshop_collection "${SRCDS_HOST_WORKSHOP_COLLECTION}" \
 			+workshop_start_map "${SRCDS_WORKSHOP_START_MAP}" \
 			-authkey "${SRCDS_WORKSHOP_AUTHKEY}" \
-			${ow_args} \
+			"${ow_args}" \
 			"${ADDITIONAL_ARGS}"
