@@ -38,7 +38,7 @@ if [ -f "$autoexec_file" ]; then
         # HERE doc to not add extra file
         while IFS=$'\t' read -r name default
         do
-                if ! grep -q '^\s*$name' "$autoexec_file"; then
+                if ! grep -q "^\s*$name" "$autoexec_file"; then
                         ow_args="${ow_args} $default"
                 fi
         done <<EOM
