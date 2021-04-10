@@ -10,7 +10,7 @@ This Docker image contains the dedicated server of the game.
 
 >  [CS:GO](https://store.steampowered.com/app/730/CounterStrike_Global_Offensive/)
 
-<img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/1b/CS-GO_Logo.svg/1920px-CS-GO_Logo.svg.png" alt="logo" width="300"/></img>
+<img src="https://1000logos.net/wp-content/uploads/2017/12/CSGO-Logo.png" alt="logo" width="300"/></img>
 
 # How to use this image
 ## Hosting a simple game server
