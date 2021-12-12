@@ -50,7 +50,7 @@ if [ -f "$autoexec_file" ]; then
 sv_password	+sv_password "${SRCDS_PW}"
 rcon_password	+rcon_password "${SRCDS_RCONPW}"
 EOM
-	# if autoexec is present, drop overwritten arguments (example: SRCDS_PW & SRCDS_RCONPW)
+	# if autoexec is present, drop overwritten arguments here (example: SRCDS_PW & SRCDS_RCONPW)
 	bash "${STEAMAPPDIR}/srcds_run" -game "${STEAMAPP}" -console -autoupdate \
 				-steam_dir "${STEAMCMDDIR}" \
 				-steamcmd_script "${HOMEDIR}/${STEAMAPP}_update.txt" \
