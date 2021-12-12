@@ -1,8 +1,8 @@
 #!/bin/bash
 mkdir -p "${STEAMAPPDIR}" || true  
 
-bash "${STEAMCMDDIR}/steamcmd.sh" +login anonymous \
-				+force_install_dir "${STEAMAPPDIR}" \
+bash "${STEAMCMDDIR}/steamcmd.sh" +force_install_dir "${STEAMAPPDIR}" \
+				+login anonymous \
 				+app_update "${STEAMAPPID}" \
 				+quit
 
@@ -23,7 +23,7 @@ if [ ! -f "${STEAMAPPDIR}/${STEAMAPP}/cfg/server.cfg" ]; then
 		wget -qO- https://sm.alliedmods.net/smdrop/"${SOURCEMOD_VERSION}"/"${LATESTSM}" | tar xvzf - -C "${STEAMAPPDIR}/${STEAMAPP}"
 	fi
 
-	# Change hostname on first launch (you can comment this out if it has done it's purpose)
+	# Change hostname on first launch (you can comment this out if it has done its purpose)
 	sed -i -e 's/{{SERVER_HOSTNAME}}/'"${SRCDS_HOSTNAME}"'/g' "${STEAMAPPDIR}/${STEAMAPP}/cfg/server.cfg"
 fi
 
