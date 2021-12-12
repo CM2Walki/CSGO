@@ -17,7 +17,7 @@ RUN set -x \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
 		wget=1.20.1-1.1 \
-		ca-certificates=20190110 \
+		ca-certificates=20200601~deb10u2 \
 		lib32z1=1:1.2.11.dfsg-1 \
 	&& mkdir -p "${STEAMAPPDIR}" \
 	&& wget --max-redirect=30 "${DLURL}/master/etc/entry.sh" -O "${HOMEDIR}/entry.sh" \
