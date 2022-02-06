@@ -49,6 +49,7 @@ SRCDS_PORT=27015
 SRCDS_TV_PORT=27020
 SRCDS_NET_PUBLIC_ADDRESS="0" (public facing ip, useful for local network setups)
 SRCDS_IP="0" (local ip to bind)
+SRCDS_LAN="0"
 SRCDS_FPSMAX=300
 SRCDS_TICKRATE=128
 SRCDS_MAXPLAYERS=14

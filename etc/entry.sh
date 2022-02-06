@@ -69,6 +69,7 @@ EOM
 				+sv_region "${SRCDS_REGION}" \
 				+net_public_adr "${SRCDS_NET_PUBLIC_ADDRESS}" \
 				-ip "${SRCDS_IP}" \
+				+sv_lan "${SRCDS_LAN}" \
 				+host_workshop_collection "${SRCDS_HOST_WORKSHOP_COLLECTION}" \
 				+workshop_start_map "${SRCDS_WORKSHOP_START_MAP}" \
 				-authkey "${SRCDS_WORKSHOP_AUTHKEY}" \
@@ -96,6 +97,7 @@ else
 				+sv_region "${SRCDS_REGION}" \
 				+net_public_adr "${SRCDS_NET_PUBLIC_ADDRESS}" \
 				-ip "${SRCDS_IP}" \
+				+sv_lan "${SRCDS_LAN}" \
 				+host_workshop_collection "${SRCDS_HOST_WORKSHOP_COLLECTION}" \
 				+workshop_start_map "${SRCDS_WORKSHOP_START_MAP}" \
 				-authkey "${SRCDS_WORKSHOP_AUTHKEY}" \
