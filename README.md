@@ -32,8 +32,10 @@ Running multiple instances (increment SRCDS_PORT and SRCDS_TV_PORT):
 $ docker run -d --net=host --name=csgo-dedicated2 -e SRCDS_PORT=27016 -e SRCDS_TV_PORT=27021 -e SRCDS_TOKEN={YOURTOKEN} cm2network/csgo
 ```
 
-`SRCDS_TOKEN` **is required to be listed & reachable;** [https://steamcommunity.com/dev/managegameservers](https://steamcommunity.com/dev/managegameservers)<br/><br/>
-`SRCDS_WORKSHOP_AUTHKEY` **is required to use the workshop;** [https://steamcommunity.com/dev/apikey](https://steamcommunity.com/dev/apikey)<br/><br/>
+`SRCDS_TOKEN` **is required to be listed & reachable. Generate one here using AppID `730`:**  
+[https://steamcommunity.com/dev/managegameservers](https://steamcommunity.com/dev/managegameservers)<br/><br/>
+`SRCDS_WORKSHOP_AUTHKEY` **is required to use workshop features:**  
+[https://steamcommunity.com/dev/apikey](https://steamcommunity.com/dev/apikey)<br/>
 
 **It's also recommended to use "--cpuset-cpus=" to limit the game server to a specific core & thread.**<br/>
 **The container will automatically update the game on startup, so if there is a game update just restart the container.**
@@ -42,7 +44,7 @@ $ docker run -d --net=host --name=csgo-dedicated2 -e SRCDS_PORT=27016 -e SRCDS_T
 ## Environment Variables
 Feel free to overwrite these environment variables, using -e (--env): 
 ```dockerfile
-SRCDS_TOKEN="changeme" (value is is required to be listed & reachable, retrieve token here: https://steamcommunity.com/dev/managegameservers)
+SRCDS_TOKEN="changeme" (value is is required to be listed & reachable, retrieve token here (AppID 730): https://steamcommunity.com/dev/managegameservers)
 SRCDS_RCONPW="changeme" (value can be overwritten by csgo/cfg/server.cfg) 
 SRCDS_PW="changeme" (value can be overwritten by csgo/cfg/server.cfg) 
 SRCDS_PORT=27015
