@@ -1,7 +1,7 @@
 ###########################################################
 # Dockerfile that builds a CSGO Gameserver
 ###########################################################
-FROM cm2network/steamcmd:root
+FROM cm2network/steamcmd:root as build_stage
 
 LABEL maintainer="walentinlamonos@gmail.com"
 
@@ -32,6 +32,8 @@ RUN set -x \
 	&& chown -R "${USER}:${USER}" "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}" "${HOMEDIR}/${STEAMAPP}_update.txt" \
 	# Clean up
 	&& rm -rf /var/lib/apt/lists/* 
+
+FROM build_stage AS bullseye-base
 
 ENV SRCDS_FPSMAX=300 \
 	SRCDS_TICKRATE=128 \
@@ -67,3 +69,11 @@ CMD ["bash", "entry.sh"]
 EXPOSE 27015/tcp \
 	27015/udp \
 	27020/udp
+
+FROM bullseye-base AS bullseye-metamod
+
+ENV METAMOD_VERSION 1.11
+
+FROM bullseye-metamod AS bullseye-sourcemod
+
+ENV SOURCEMOD_VERSION 1.11
