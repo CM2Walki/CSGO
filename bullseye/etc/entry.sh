@@ -57,14 +57,12 @@ EOM
 				-usercon \
 				+fps_max "${SRCDS_FPSMAX}" \
 				-tickrate "${SRCDS_TICKRATE}" \
-				-port "${SRCDS_PORT}" \
-				+tv_port "${SRCDS_TV_PORT}" \
-				+clientport "${SRCDS_CLIENT_PORT}" \
+				-port 27015 \
+				+tv_port 27020 \
+				+clientport 27005 \
 				-maxplayers_override "${SRCDS_MAXPLAYERS}" \
 				+game_type "${SRCDS_GAMETYPE}" \
 				+game_mode "${SRCDS_GAMEMODE}" \
-				+mapgroup "${SRCDS_MAPGROUP}" \
-				+map "${SRCDS_STARTMAP}" \
 				+sv_setsteamaccount "${SRCDS_TOKEN}" \
 				+sv_region "${SRCDS_REGION}" \
 				+net_public_adr "${SRCDS_NET_PUBLIC_ADDRESS}" \
@@ -83,14 +81,12 @@ else
 				-usercon \
 				+fps_max "${SRCDS_FPSMAX}" \
 				-tickrate "${SRCDS_TICKRATE}" \
-				-port "${SRCDS_PORT}" \
-				+tv_port "${SRCDS_TV_PORT}" \
-				+clientport "${SRCDS_CLIENT_PORT}" \
+				-port 27015 \
+				+tv_port 27020 \
+				+clientport 27005 \
 				-maxplayers_override "${SRCDS_MAXPLAYERS}" \
 				+game_type "${SRCDS_GAMETYPE}" \
 				+game_mode "${SRCDS_GAMEMODE}" \
-				+mapgroup "${SRCDS_MAPGROUP}" \
-				+map "${SRCDS_STARTMAP}" \
 				+sv_setsteamaccount "${SRCDS_TOKEN}" \
 				+rcon_password "${SRCDS_RCONPW}" \
 				+sv_password "${SRCDS_PW}" \

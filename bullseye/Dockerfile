@@ -39,8 +39,6 @@ FROM build_stage AS bullseye-base
 
 ENV SRCDS_FPSMAX=300 \
 	SRCDS_TICKRATE=128 \
-	SRCDS_PORT=27015 \
-	SRCDS_TV_PORT=27020 \
 	SRCDS_CLIENT_PORT=27005 \
 	SRCDS_NET_PUBLIC_ADDRESS="0" \
 	SRCDS_IP="0" \
@@ -49,9 +47,7 @@ ENV SRCDS_FPSMAX=300 \
 	SRCDS_TOKEN=0 \
 	SRCDS_RCONPW="changeme" \
 	SRCDS_PW="changeme" \
-	SRCDS_STARTMAP="de_dust2" \
-	SRCDS_REGION=3 \
-	SRCDS_MAPGROUP="mg_active" \
+	SRCDS_REGION=255 \
 	SRCDS_GAMETYPE=0 \
 	SRCDS_GAMEMODE=1 \
 	SRCDS_HOSTNAME="New \"${STEAMAPP}\" Server" \
@@ -66,11 +62,6 @@ USER ${USER}
 WORKDIR ${HOMEDIR}
 
 CMD ["bash", "entry.sh"]
-
-# Expose ports
-EXPOSE 27015/tcp \
-	27015/udp \
-	27020/udp
 
 FROM bullseye-base AS bullseye-metamod
 
