@@ -10,6 +10,9 @@ ENV STEAMAPP csgo
 ENV STEAMAPPDIR "${HOMEDIR}/${STEAMAPP}-dedicated"
 ENV DLURL https://raw.githubusercontent.com/CM2Walki/CSGO
 
+COPY etc/entry.sh "${HOMEDIR}/entry.sh"
+COPY etc/csgo "/etc/csgo"
+
 RUN set -x \
 	# Install, update & upgrade packages
 	&& apt-get update \
@@ -19,7 +22,6 @@ RUN set -x \
 		lib32z1=1:1.2.11.dfsg-2+deb11u2 \
 	&& mkdir -p "${STEAMAPPDIR}" \
 	# Add entry script
-	&& wget --max-redirect=30 "${DLURL}/master/etc/entry.sh" -O "${HOMEDIR}/entry.sh" \
 	&& { \
 		echo '@ShutdownOnFailedCommand 1'; \
 		echo '@NoPromptForPassword 1'; \
