@@ -27,6 +27,9 @@ if [ ! -f "${STEAMAPPDIR}/${STEAMAPP}/cfg/server.cfg" ]; then
 	sed -i -e 's/{{SERVER_HOSTNAME}}/'"${SRCDS_HOSTNAME}"'/g' "${STEAMAPPDIR}/${STEAMAPP}/cfg/server.cfg"
 fi
 
+# this file (if it exits) screws up the map voting, so just get rid of it
+rm -f "${STEAMAPPDIR}/${STEAMAPP}/addons/sourcemod/plugins/nextmap.smx"
+
 # Believe it or not, if you don't do this srcds_run shits itself
 cd "${STEAMAPPDIR}"
 
