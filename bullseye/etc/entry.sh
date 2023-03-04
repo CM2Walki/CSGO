@@ -20,8 +20,8 @@ fi
 
 # Is the config missing?
 if [ ! -f "${STEAMAPPDIR}/${STEAMAPP}/cfg/server.cfg" ]; then
-	# Download & extract the config
-	wget -qO- "${DLURL}/master/etc/cfg.tar.gz" | tar xvzf - -C "${STEAMAPPDIR}/${STEAMAPP}"
+	# overwrite the base config files with the baked in ones
+	cp -r /etc/csgo/* "${STEAMAPPDIR}/${STEAMAPP}/cfg"
 
 	# Change hostname on first launch (you can comment this out if it has done its purpose)
 	sed -i -e 's/{{SERVER_HOSTNAME}}/'"${SRCDS_HOSTNAME}"'/g' "${STEAMAPPDIR}/${STEAMAPP}/cfg/server.cfg"
