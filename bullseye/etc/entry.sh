@@ -4,7 +4,7 @@ mkdir -p "${STEAMAPPDIR}" || true
 bash "${STEAMCMDDIR}/steamcmd.sh" +force_install_dir "${STEAMAPPDIR}" \
 				+login anonymous \
 				+app_update "${STEAMAPPID}" \
-				+quit
+				+exit
 
 # Are we in a metamod container and is the metamod folder missing?
 if  [ ! -z "$METAMOD_VERSION" ] && [ ! -d "${STEAMAPPDIR}/${STEAMAPP}/addons/metamod" ]; then
