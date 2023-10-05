@@ -1,3 +1,19 @@
+### Repository Archived
+
+🚨 **Attention All Contributors & Users** 🚨
+
+Due to the release of [Counter-Strike 2](https://store.steampowered.com/app/730/CounterStrike_2/), this repository is now **archived** and will no longer be actively maintained. The Docker Hub images will still be available, however they'll no longer receive updates.
+
+🔗 **We're Moving!** 🔗
+
+👉 [Development continues on the CS2 Repository](https://github.com/CM2Walki/CS2) 👈
+
+Please make sure to star ⭐ the new repository and submit any new issues, pull requests, or contributions there.
+
+Regards,<br>
+Walentin 'Walki' Lamonos
+<hr>
+
 [![](https://img.shields.io/codacy/grade/1a72f69b97bc46cfaec6cb77819beb66)](https://hub.docker.com/r/cm2network/csgo/) [![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/cm2network/csgo)](https://hub.docker.com/r/cm2network/csgo/) [![Docker Stars](https://img.shields.io/docker/stars/cm2network/csgo.svg)](https://hub.docker.com/r/cm2network/csgo/) [![Docker Pulls](https://img.shields.io/docker/pulls/cm2network/csgo.svg)](https://hub.docker.com/r/cm2network/csgo/) [![](https://img.shields.io/docker/image-size/cm2network/csgo)](https://img.shields.io/docker/image-size/cm2network/csgo) [![Discord](https://img.shields.io/discord/747067734029893653)](https://discord.gg/7ntmAwM)
 # Supported tags and respective `Dockerfile` links
 -	[`base`, `latest` (*bullseye/Dockerfile*)](https://github.com/CM2Walki/CSGO/blob/master/bullseye/Dockerfile)
